@@ -11,6 +11,7 @@ const {
   IconButton,
   MenuIcon,
   TextField,
+  Grid,
   colors,
   createMuiTheme,
   CssBaseline,
@@ -46,19 +47,21 @@ const theme = createMuiTheme({
 
 const styles = theme => ({
   root: {
-    flexGrow: 1,
-    margin: 50,
-    textAlign: 'center',
-  },
-  Spaper: {
-    height: 300,
-    width: 500,
-    margin: 20,
-    textAlign: 'center',
-    rounded: true
+      position: 'absolute', 
+        left: '50%', 
+        top: '50%',
+        transform: 'translate(-50%, -50%)',
   },
   card: {
     maxWidth: 500,
+    padding: theme.spacing.unit * 2,
+    textAlign: 'center',
+  },
+  paper: {
+    padding: theme.spacing.unit * 2,
+    maxWidth: 650,
+    textAlign: 'center',
+    color: 'white',
   },
   media: {
     height: 300,
@@ -76,18 +79,30 @@ const styles = theme => ({
     width: 200,
   },
 });
-
-
-
+var Nick = ""; 
+var Pass = "";
+var toServlet;
 class Index extends React.Component {  
+ GetNick = event => {
+     Nick=event.target.value;
+    console.log(Nick);
+  };
+  GetPass = event => {
+     Pass = event.target.value;
+    console.log(Pass);
+  };
+  
+   handleClick(){
+       window.location.href="GetUser?User="+Nick+"&Pass="+Pass;
+	}
   render() {
     const { classes } = this.props;
     return (
       <MuiThemeProvider theme={theme}>
         <div className={classes.root}>
           <CssBaseline />
- 
-        <Paper className={classes.Spaper} elevation={10}>
+        <Grid container spacing={0} justfy="center" alignItems="center">
+        <Grid item xs={0}>
          <Card className={classes.card}>
            <CardActionArea>
             <CardMedia
@@ -106,6 +121,7 @@ class Index extends React.Component {
                 className={classes.textField}
                 margin="normal"
                 label="Nombre de Usuario"
+                onChange={this.GetNick}
                 />
                 <TextField
                 id="Password"
@@ -113,19 +129,21 @@ class Index extends React.Component {
                 margin="normal"
                 label="Contraseña"
                 type="password"
+                onChange={this.GetPass}
                 />
            </form>
           </Typography>
         </CardContent>
            </CardActionArea>
            <CardActions>
-        <Button color="primary">
+        <Button color="primary" onClick={this.handleClick}>
           Login
         </Button>
       </CardActions>
          </Card>
-        </Paper>
-          
+         </Grid>
+
+         </Grid>
         </div>
       </MuiThemeProvider>
     );
