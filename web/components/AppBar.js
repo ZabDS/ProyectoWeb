@@ -58,17 +58,13 @@ class Index extends React.Component {
           <CssBaseline />
           <AppBar position="static" color="primary">
         <Toolbar>
+        <img src="components/resources/logo.svg" className="App-logo-Bar" alt="logo" />
           <Typography variant="h4" color="inherit" className={classes.grow}>
-            Comenzemos
+            Bienvenido {User}
           </Typography>
-          <Button color="inherit" href="Login.html">Login</Button>
+          <Button color="inherit" href="Login.html">Logout</Button>
         </Toolbar>
       </AppBar>
-      <div className="App">
-        <header className="App-header">
-          <img src="components/resources/logo.svg" className="App-logo" alt="logo" />
-        </header>
-      </div>
         </div>
       </MuiThemeProvider>
     );
@@ -77,4 +73,4 @@ class Index extends React.Component {
 
 const App = withStyles(styles)(Index);
 
-ReactDOM.render(<App />, document.getElementById('Inicio'));
+ReactDOM.render(<App />, document.getElementById('AppBar'));
