@@ -8,6 +8,10 @@
         <servlet-name>GetUser</servlet-name>
         <servlet-class>Servlets.GetUser</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>AltaPregunta</servlet-name>
+        <servlet-class>Servlets.AltaPregunta</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>Login</servlet-name>
         <url-pattern>/Login</url-pattern>
@@ -15,6 +19,10 @@
     <servlet-mapping>
         <servlet-name>GetUser</servlet-name>
         <url-pattern>/GetUser</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>AltaPregunta</servlet-name>
+        <url-pattern>/AltaPregunta</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

@@ -85,11 +85,9 @@ var toServlet;
 class Index extends React.Component {  
  GetNick = event => {
      Nick=event.target.value;
-    console.log(Nick);
   };
   GetPass = event => {
      Pass = event.target.value;
-    console.log(Pass);
   };
   
    handleClick(){

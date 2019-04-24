@@ -133,7 +133,7 @@ class Index extends React.Component {
             <CardMedia
           className={classes.media}
           image="components/resources/ModificarPregunta.svg"
-          title="Login"
+          title="Modificar Pregunta"
             />
          <CardContent>
           <Typography gutterBottom variant="h5" component="h2">
@@ -159,7 +159,7 @@ class Index extends React.Component {
             <CardMedia
           className={classes.media}
           image="components/resources/Borrar.svg"
-          title="Login"
+          title="Borrar Pregunta"
             />
          <CardContent>
           <Typography gutterBottom variant="h5" component="h2">

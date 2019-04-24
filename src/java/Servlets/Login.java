@@ -78,7 +78,7 @@ public class Login extends HttpServlet {
                 out.println("<script type=\"text/babel\" src=\"components/AppBar.js\"></script>");
                 out.println("</body>");
                 out.println("</html>");
-            session.setAttribute("A",USER);
-            session.setAttribute("B",PASS);
+            session.setAttribute("user",USER);
+            session.setAttribute("pass",PASS);
     }
 }

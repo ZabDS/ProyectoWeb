@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!ELEMENT pregunta (autor,nombreDePregunta,enunciado,puntacion,variable+,formula)>
+<!ELEMENT autor (#PCDATA)>
+<!ELEMENT nombreDePregunta (#PCDATA)>
+<!ELEMENT enunciado (#PCDATA)>
+<!ELEMENT puntuacion (#PCDATA)>
+<!ELEMENT variable (#PCDATA)>
+<!ELEMENT formula (#PCDATA)>

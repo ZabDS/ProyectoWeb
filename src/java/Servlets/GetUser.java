@@ -14,13 +14,13 @@ import javax.servlet.http.HttpSession;
         throws ServletException, IOException {
             response.setContentType("text/html;charset=UTF-8");
             HttpSession session= request.getSession();
-            String A,B,C,Det;
-            A=(String)request.getParameter("User");
-            B=(String)request.getParameter("Pass");
+            String user,pass;
+            user=(String)request.getParameter("User");
+            pass=(String)request.getParameter("Pass");
             
             PrintWriter out = response.getWriter(); 
-            session.setAttribute("User",A);
-            session.setAttribute("Pass",B);
+            session.setAttribute("User",user);
+            session.setAttribute("Pass",pass);
             response.sendRedirect("Login");
     }
 }
