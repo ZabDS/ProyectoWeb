@@ -1,5 +1,6 @@
 package Servlets;
 
+import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -14,6 +15,8 @@ import javax.servlet.http.HttpSession;
 import org.jdom.DocType;
 import org.jdom.Document;
 import org.jdom.Element;
+import org.jdom.input.SAXBuilder;
+import org.jdom.output.Format;
 import org.jdom.output.XMLOutputter;
 
     public class AltaPregunta extends HttpServlet {
@@ -40,7 +43,12 @@ import org.jdom.output.XMLOutputter;
 
             try{
                    String path = request.getRealPath("/");
-			             Element raiz = new Element("pregunta"); //permite declarar los element dentro del xml
+                   SAXBuilder builder = new SAXBuilder();
+                   File xmlPreguntas = new File(path+"/XML/Preguntas.xml");
+                   Document doc = (Document) builder.build(xmlPreguntas);
+                   Element rootNode = doc.getRootElement();
+                   
+			             Element pregunta = new Element("pregunta"); //permite declarar los element dentro del xml
 			             Element autor = new Element("autor");
 			             Element nombre = new Element("nombreDePregunta");
 			             Element enunciado = new Element("enunciado");
@@ -53,23 +61,23 @@ import org.jdom.output.XMLOutputter;
 			             puntuacion.setText(Puntuacion);
 			             formula.setText(Formula);
 
-			             raiz.addContent(autor);
-			             raiz.addContent(nombre);
-			             raiz.addContent(enunciado);
-			             raiz.addContent(puntuacion);
+			             pregunta.addContent(autor);
+			             pregunta.addContent(nombre);
+			             pregunta.addContent(enunciado);
+			             pregunta.addContent(puntuacion);
 
                    for(int i=0; i<Variables.size();i++)
-                     raiz.addContent(new Element("variable").setText(Variables.get(i)));
+                     pregunta.addContent(new Element("variable").setText(Variables.get(i)));
 
-                   raiz.addContent(formula);
-
-                   //DocType dtype = new DocType(path+"/XML/DTDPREGUNTA.dtd");
-			             Document newdoc = new Document(raiz); //Convierte la raiz a un objeto de tipo document para hacerlo persistente
+                                     pregunta.addContent(formula);
+                                     
+                                     rootNode.addContent(pregunta);
+                                     
 			             XMLOutputter fmt = new XMLOutputter();
-			             FileWriter writer = new FileWriter(path+"/XML/"+Nombre); //Crea el archivo xml
-			             fmt.output(newdoc, writer); //escribe en el documento xml
-                   writer.flush(); //Vacia todo el buffer en el xml
-                   writer.close(); // Cierra el filewriter
+                                     fmt.setFormat(Format.getPrettyFormat());
+                                     FileWriter writer = new FileWriter(path+"/XML/Preguntas.xml"); //Crea el archivo xml
+			             fmt.output(doc, writer);
+                                     writer.close(); // Cierra el filewriter
 	              }catch (Exception e){
 			            e.printStackTrace();
 		            }
