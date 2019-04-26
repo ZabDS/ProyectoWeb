@@ -84,26 +84,6 @@ import org.jdom.output.XMLOutputter;
 
 
             PrintWriter out = response.getWriter();
-            out.println("<!DOCTYPE html>\n" +
-            "<html lang=\"en\" dir=\"ltr\">\n" +
-            "  <head>\n" +
-            "    <title>Inicio</title>\n" +
-            "    <meta charset=\"utf-8\" />\n" +
-            "    <meta name=\"viewport\" content=\"minimum-scale=1, initial-scale=1, width=device-width, shrink-to-fit=no\" />\n" +
-            "    <script src=\"https://unpkg.com/react@latest/umd/react.development.js\" crossorigin=\"anonymous\"></script>\n" +
-            "    <script src=\"https://unpkg.com/react-dom@latest/umd/react-dom.development.js\"></script>\n" +
-            "    <script src=\"https://unpkg.com/@material-ui/core@latest/umd/material-ui.development.js\" crossorigin=\"anonymous\"></script>\n" +
-            "    <script src=\"https://unpkg.com/babel-standalone@latest/babel.min.js\" crossorigin=\"anonymous\"></script>\n" +
-            "    \n" +
-            "    <link rel=\"stylesheet\" href=\"https://fonts.googleapis.com/css?family=Roboto:300,400,500\" />\n" +
-            "    <link rel=\"stylesheet\" href=\"https://fonts.googleapis.com/icon?family=Material+Icons\" />\n" +
-            "    <link rel=\"stylesheet\" href=\"components/App.css\" />"
-            + "</head>\n" +
-            "  <body>");
-            for(int j=0;j<Variables.size();j++)
-                out.println("var"+j+": "+Variables.get(j));
-            out.println("<script type=\"text/babel\">const User = '"+Texto+"';</script>");
-            out.println("</body>");
-            out.println("</html>");
+            response.sendRedirect("Login");
     }
 }
