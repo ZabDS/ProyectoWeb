@@ -9,6 +9,8 @@ const {
   CardContent,
   CardMedia,
   IconButton,
+  Snackbar,
+  CloseIcon,
   MenuIcon,
   TextField,
   Grid,
@@ -39,9 +41,9 @@ const theme = createMuiTheme({
       dark: colors.blue[700],
     },
     secondary: {
-      light: colors.green[300],
-      main: colors.green[500],
-      dark: colors.green[700],
+      light: colors.blue[300],
+      main: colors.blue[500],
+      dark: colors.blue[700],
     },
   },
   typography: {
@@ -87,6 +89,11 @@ const styles = theme => ({
     marginRight: theme.spacing.unit,
     width: 200,
   },
+  close: {
+    padding: theme.spacing.unit / 2,
+    backgroundColor: colors.green[600],    
+    textAlign: 'center',
+  },
 });
 var QuestName;
 var QuestText;
@@ -95,7 +102,15 @@ var AnswerTol;
 var Points;
 
 class Index extends React.Component {
-   GetQuestName = event => {
+   sleep = time => {
+        return new Promise((resolve) => setTimeout(resolve, time));
+    };
+    
+  state = {
+    open: false,
+  };
+    
+ GetQuestName = event => {
      QuestName=event.target.value;
   };
   GetQuestText = event => {
@@ -111,7 +126,10 @@ class Index extends React.Component {
      Points=event.target.value;
   };
   handleClick = event => {
-     window.location.href="AltaPregunta?Nombre="+QuestName+"&Texto="+QuestText+"&Formula="+FormText+"&Puntuacion="+Points;
+        this.setState({ open: true });
+        this.sleep(500).then(() => {
+            window.location.href="AltaPregunta?Nombre="+QuestName+"&Texto="+QuestText+"&Formula="+FormText+"&Puntuacion="+Points;
+        });
   };
     render() {
     const { classes } = this.props;
@@ -168,7 +186,7 @@ class Index extends React.Component {
                 Respuesta
                 </Typography>
                 </ListItem>
-
+                
                 <TextField
                 id="FormText"
                 className={classes.textField}
@@ -180,7 +198,23 @@ class Index extends React.Component {
                 InputLabelProps={{ shrink: true,}}
                 onChange={this.GetFormText}
                 />
-
+                <Snackbar
+                anchorOrigin={{
+                vertical: 'bottom',
+                horizontal: 'left',
+                }}
+                open={this.state.open}
+                autoHideDuration={600}
+                onClose={this.handleClose}
+                ContentProps={{
+                'aria-describedby': 'message-id',
+                classes: {
+                        root: classes.close                        
+                        }
+                }}
+                message={<span id="message-id">Pregunta Creada Correctamente</span>}
+                />
+                
            </form>
           </Typography>
         </CardContent>
@@ -194,7 +228,7 @@ class Index extends React.Component {
          </List>
          </Grid>
          </Grid>
-        </div>
+         </div>
       </MuiThemeProvider>
     );
   }

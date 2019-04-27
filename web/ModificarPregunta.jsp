@@ -1,3 +1,5 @@
+<%@page import="java.util.ArrayList"%>
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
   <head>
@@ -15,7 +17,10 @@
   </head>
   <body>
     <div id="CrearPregunta"></div>
+ 
 
+<script type="text/javascript">
+var preguntasDisponibles = <%= request.getAttribute("preguntasDisponibles") %>;</script>
     <script type="text/babel" src="components/ModificarPregunta.js"></script>
   </body>
 </html>
