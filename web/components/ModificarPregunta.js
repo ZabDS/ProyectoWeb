@@ -129,6 +129,7 @@ class Index extends React.Component {
                                                 </select>
                                                 <TextField
                                                     id="QuestText"
+                                                    name="QuestText"
                                                     className={classes.textField}
                                                     margin="normal"
                                                     label="Enunciado de tu pregunta:"
@@ -141,6 +142,7 @@ class Index extends React.Component {
                 
                                                 <TextField
                                                     id="Points"
+                                                    name="Points"
                                                     className={classes.textField}
                                                     margin="normal"
                                                     label="Puntuación de la pregunta:"
@@ -159,6 +161,7 @@ class Index extends React.Component {
                 
                                                 <TextField
                                                     id="FormText"
+                                                    name="FormText"
                                                     className={classes.textField}
                                                     margin="normal"
                                                     label="Fórmula para resolver la pregunta:"

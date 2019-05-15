@@ -37,12 +37,20 @@ public class ModificarPregunta extends HttpServlet {
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        RequestDispatcher rd = request.getRequestDispatcher("");
-        
+        RequestDispatcher rd = request.getRequestDispatcher("/index.html");
+        String nombrePregunta = request.getParameter("id_select");
+        String enunciado = request.getParameter("QuestText");
+        String puntuacion = request.getParameter("Points");
+        String formula = request.getParameter("FormText");
+
         rd.forward(request, response);
     }
     
-    ArrayList<String> generarListaDeXML(String path) {
+    protected void modificarXML(String nombrePregunta,String enunciado,String puntuacion,String formula){
+    }
+    
+    
+    protected ArrayList<String> generarListaDeXML(String path) {
         ArrayList<String> nombrePreguntas = new ArrayList<String>();
         try {
             File fXmlFile = new File(path + "/XML/Preguntas.xml");
