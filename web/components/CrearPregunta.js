@@ -121,7 +121,7 @@ class Index extends React.Component {
                                             <form className={classes.container} noValidate autoComplete="off" method="POST" action="AltaPregunta">
                                                 
                                                 <TextField
-                                                   id="QuestName"
+                                                   id="Nombre"
                                                    name="Nombre"
                                                    className={classes.textField}
                                                    margin="normal"
@@ -130,7 +130,7 @@ class Index extends React.Component {
                                                    onChange={this.handleChange}
                                                    />
                                                 <TextField
-                                                    id="QuestText"
+                                                    id="Texto"
                                                     name="Texto"
                                                     className={classes.textField}
                                                     margin="normal"
@@ -143,7 +143,7 @@ class Index extends React.Component {
                                                     />
                 
                                                 <TextField
-                                                    id="Points"
+                                                    id="Puntuacion"
                                                     name="Puntuacion"
                                                     className={classes.textField}
                                                     margin="normal"
@@ -162,7 +162,7 @@ class Index extends React.Component {
                                                 </ListItem>
                 
                                                 <TextField
-                                                    id="FormText"
+                                                    id="Formula"
                                                     name="Formula"
                                                     className={classes.textField}
                                                     margin="normal"
