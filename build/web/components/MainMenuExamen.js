@@ -105,7 +105,7 @@ class Index extends React.Component {
         </CardContent>
            </CardActionArea>
            <CardActions>
-        <Button color="primary" href="CrearExamen?">
+        <Button color="primary" href="ObtenerPreguntas?">
           Go!
         </Button>
       </CardActions>
