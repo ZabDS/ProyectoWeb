@@ -16,6 +16,18 @@
         <servlet-name>ModificarPregunta</servlet-name>
         <servlet-class>Servlets.ModificaPreguntas</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>CrearExamen</servlet-name>
+        <servlet-class>Servlets.CrearExamen</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>IrExamen</servlet-name>
+        <servlet-class>Servlets.IrExamen</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>IrPreguntas</servlet-name>
+        <servlet-class>Servlets.IrPreguntas</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>Login</servlet-name>
         <url-pattern>/Login</url-pattern>
@@ -31,6 +43,18 @@
     <servlet-mapping>
         <servlet-name>ModificarPregunta</servlet-name>
         <url-pattern>/ModificarPregunta</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>CrearExamen</servlet-name>
+        <url-pattern>/CrearExamen</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>IrExamen</servlet-name>
+        <url-pattern>/IrExamen</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>IrPreguntas</servlet-name>
+        <url-pattern>/IrPreguntas</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

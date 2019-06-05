@@ -16,11 +16,11 @@ const {
   MuiThemeProvider,
   Typography,
   withStyles,
-} = window['material-ui'];
+} = MaterialUI;
 
 const theme = createMuiTheme({
   palette: {
-    type:'dark',
+    //type:'dark',
     primary: {
       light: colors.red[300],
       main: colors.red[500],

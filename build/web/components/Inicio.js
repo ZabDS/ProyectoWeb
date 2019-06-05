@@ -16,7 +16,7 @@ const {
   MuiThemeProvider,
   Typography,
   withStyles,
-} = window['material-ui'];
+} = MaterialUI;
 
 const theme = createMuiTheme({
   palette: {

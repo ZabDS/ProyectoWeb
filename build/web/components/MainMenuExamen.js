@@ -86,8 +86,8 @@ class Index extends React.Component {
       <MuiThemeProvider theme={theme}>
         <div className={classes.root}>
           <CssBaseline />
-          <Grid container spacing={10} className={classes.grids}>
-        <Grid item xs={6}>
+          <Grid container spacing={40} className={classes.grids}>
+        <Grid item xs={4}>
          <Card className={classes.card}>
            <CardActionArea>
             <CardMedia
@@ -97,40 +97,66 @@ class Index extends React.Component {
             />
          <CardContent>
           <Typography gutterBottom variant="h5" component="h2">
-            ¡Crea una Nueva Pregunta!
+            ¡Crea un Nuevo Examen!
           </Typography>
           <Typography component="p">
-           Crea una pregunta para integrarla a un exámen!
+           Crea un nuevo examen para que tus alumnos lo resuelvan!
           </Typography>
         </CardContent>
            </CardActionArea>
            <CardActions>
-        <Button color="primary" href="IrPreguntas?">
+        <Button color="primary" href="CrearExamen?">
           Go!
         </Button>
       </CardActions>
          </Card>
          </Grid>
 
-         <Grid item xs={6}>
+         <Grid item xs={4}>
          <Card className={classes.card}>
            <CardActionArea>
             <CardMedia
           className={classes.media}
-          image="components/resources/HacerPregunta.svg"
+          image="components/resources/VerExamen.svg"
           title="Ver"
             />
          <CardContent>
           <Typography gutterBottom variant="h5" component="h2">
-            ¡Crea un nuevo exámen!
+            ¡Ve los Exámenes que has hecho!
           </Typography>
           <Typography component="p">
-           Elige las preguntas e integralas para evaluar a tus alumnos!
+           Verifica que tu exámen este bien hecho!
           </Typography>
         </CardContent>
            </CardActionArea>
            <CardActions>
-        <Button color="primary" href="IrExamen?">
+        <Button color="primary" href="VerPregunta.html">
+          Go!
+        </Button>
+      </CardActions>
+         </Card>
+         </Grid>
+         
+         <Grid item xs={4}>
+         <Card className={classes.card}>
+           <CardActionArea>
+            <CardMedia
+          className={classes.media}
+          image="components/resources/ModificarExamen.svg"
+          title="Modificar Pregunta"
+            />
+         <CardContent>
+          <Typography gutterBottom variant="h5" component="h2">
+            ¡Modifica Examen!
+          </Typography>
+          <Typography component="p">
+           ¿No te gusto como quedó tu Examen? 
+           Modifícala ahora!
+          </Typography>
+        </CardContent>
+           </CardActionArea>
+           <CardActions>
+        <Button color="primary" href="ModificarPregunta">
           Go!
         </Button>
       </CardActions>
@@ -146,4 +172,4 @@ class Index extends React.Component {
 
 const App = withStyles(styles)(Index);
 
-ReactDOM.render(<App />, document.getElementById('MainMenu'));
+    ReactDOM.render(<App />, document.getElementById('MainMenuExamen'));
