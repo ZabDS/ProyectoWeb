@@ -86,7 +86,6 @@ class Index extends React.Component {
       <Table className={classes.table}>
         <TableHead>
           <TableRow>
-            <TableCell padding="checkbox"></TableCell>
             <TableCell>Pregunta</TableCell>
           </TableRow>
         </TableHead>
@@ -100,9 +99,6 @@ class Index extends React.Component {
           ))}
         </TableBody>
       </Table>
-      <Button variant="contained" className={classes.button} color="primary">
-        Crear
-      </Button>
     </Paper>
       </MuiThemeProvider>
     );

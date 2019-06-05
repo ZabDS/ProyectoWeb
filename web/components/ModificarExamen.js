@@ -62,43 +62,78 @@ const styles = theme => ({
   button: {
     margin: theme.spacing(1),
   },
+  textField: {
+    marginLeft: theme.spacing.unit,
+    marginRight: theme.spacing.unit,
+    width: 200,
+  },
 });
 
 
 function createData(name) {
   return { name };
 }
+var i;
+var Preguntas=[];
+var rows = [];
+var Name;
 
-const rows = preguntasDisponibles;
+for(i in PreguntasD){
+   rows.push(createData(PreguntasD[i]));
+}
 
 class Index extends React.Component {
     
    GetCheck(){
        if(event.target.checked)
-       console.log(event.target.value); 
+           if(Preguntas.indexOf(event.target.value) == -1)
+            Preguntas.push(event.target.value);
 	}
+        
+   GetName = event => {
+     Name=event.target.value;
+  };
+   
+   CrearEx(){
+       window.location.href="CrearExamen?Quests="+Preguntas.toString()+"&TestName="+Name;
+   }
+   
         
   render() {
     const { classes } = this.props;
     return (
-      <MuiThemeProvider theme={theme}>
+      <MuiThemeProvider theme={theme}>  
+          <TextField
+                id="TestName"
+                className={classes.textField}
+                margin="normal"
+                label="Nombre de Examen"
+                onChange={this.GetName}
+                />
         <Paper className={classes.root}>
       <Table className={classes.table}>
         <TableHead>
           <TableRow>
+            <TableCell padding="checkbox"></TableCell>
             <TableCell>Pregunta</TableCell>
           </TableRow>
         </TableHead>
         <TableBody>
           {rows.map(row => (
-            <TableRow key={row}>
-              <TableCell>
-                {row}
+            <TableRow key={row.name} role="checkbox">
+                 <tableCell>
+                 <Checkbox value={row.name} onChange={this.GetCheck}></Checkbox>
+                 </tableCell>
+              <TableCell component="th" scope="row">
+                {row.name}
               </TableCell>
             </TableRow>
           ))}
         </TableBody>
       </Table>
+      <Button variant="contained" className={classes.button} color="primary" onClick={this.CrearEx}>
+        Crear
+      </Button>
     </Paper>
       </MuiThemeProvider>
     );
@@ -108,4 +143,4 @@ class Index extends React.Component {
 const App = withStyles(styles)(Index);
 
 ReactDOM.render(<App />, 
-document.getElementById('VerPreguntas'));
+document.getElementById('ModificarExamen'));

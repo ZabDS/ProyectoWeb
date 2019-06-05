@@ -5,8 +5,10 @@
  */
 package Servlets;
 
+import static Servlets.ModificaPreguntas.convertirAArregloJS;
 import java.io.File;
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.ArrayList;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -18,36 +20,67 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author nexus
  */
-public class ModificaPreguntas extends HttpServlet {
+public class ModificarExamen extends HttpServlet {
+
+    HttpServletRequest request;
+    HttpServletResponse response;
+    String pathPreguntas;
+    String pathExamenes;
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        String path = request.getRealPath("/") + "XML/PREGUNTAS/";
-        ArrayList<String> nombreDePreguntas = generarListaDePreguntas(path);
-        RequestDispatcher rd = request.getRequestDispatcher("ModificarPregunta.jsp");
-        request.setAttribute("preguntasDisponibles", convertirAArregloJS(nombreDePreguntas.toArray(new String[0])));
+        inicializar(request, response);
+        RequestDispatcher rd = request.getRequestDispatcher("ModificarExamen.jsp");
+        establecerAtributos();
         rd.forward(request, response);
+    }
+
+    protected void establecerAtributos() {
+        ArrayList<String> nombreDeExamenes = generarListaDeExamenes();
+        ArrayList<String> nombreDePreguntas = generarListaDePreguntas();
+
+        request.setAttribute("examenesDisponibles", convertirAArregloJS(nombreDeExamenes.toArray(new String[0])));
+        request.setAttribute("preguntasDisponibles", convertirAArregloJS(nombreDePreguntas.toArray(new String[0])));
+
+    }
+
+    protected void inicializar(HttpServletRequest request, HttpServletResponse response) {
+        this.request = request;
+        this.response = response;
+        this.pathExamenes = request.getRealPath("/") + "XML/EXAMENES/";
+        this.pathPreguntas = request.getRealPath("/") + "XML/PREGUNTAS/";
     }
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        String path = request.getRealPath("/") + "XML/PREGUNTAS/";
+        inicializar(request, response);
         String nombreDePregunta = request.getParameter("Nombre");
         String accion = request.getParameter("submitButton");
         if ("Modificar".equals(accion)) {
-                        eliminarPregunta(path, nombreDePregunta);
+            eliminarExamen(nombreDePregunta);
             RequestDispatcher dispatcher = request.getRequestDispatcher("/AltaPregunta");
             dispatcher.forward(request, response);
 
         } else if ("Borrar".equals(accion)) {
-            eliminarPregunta(path, nombreDePregunta);
+            eliminarExamen(nombreDePregunta);
             response.sendRedirect("Login");
 
         }
     }
 
-    protected void eliminarPregunta(String path, String nombreDePregunta) {
-        File file = new File(path + nombreDePregunta + ".xml");
+    protected ArrayList<String> generarListaDePreguntas() {
+        ArrayList<String> nombrePreguntas = new ArrayList<String>();
+        final File carpeta = new File(this.pathPreguntas);
+        for (final File fileEntry : carpeta.listFiles()) {
+            String nombre = fileEntry.getName();
+            String nombreSinExtension = nombre.substring(0, nombre.length() - 4);
+            nombrePreguntas.add(nombreSinExtension);
+        }
+        return nombrePreguntas;
+    }
+
+    protected void eliminarExamen(String nombreDeExamen) {
+        File file = new File(this.pathExamenes + nombreDeExamen + ".xml");
         if (file.delete()) {
             System.out.println("200");
         } else {
@@ -55,9 +88,9 @@ public class ModificaPreguntas extends HttpServlet {
         }
     }
 
-    protected ArrayList<String> generarListaDePreguntas(String path) {
+    protected ArrayList<String> generarListaDeExamenes() {
         ArrayList<String> nombrePreguntas = new ArrayList<String>();
-        final File carpeta = new File(path);
+        final File carpeta = new File(this.pathExamenes);
         for (final File fileEntry : carpeta.listFiles()) {
             String nombre = fileEntry.getName();
             String nombreSinExtension = nombre.substring(0, nombre.length() - 4);
