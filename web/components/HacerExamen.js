@@ -68,19 +68,25 @@ const styles = theme => ({
 function createData(name) {
   return { name };
 }
+var i;
+var Preguntas=[];
+var rows = [];
 
-const rows = [
-  createData('Frozen yoghurt'),
-  createData('sss'),
-  createData('xsx'),
-];
+for(i in PreguntasD){
+   rows.push(createData(PreguntasD[i]));
+}
 
 class Index extends React.Component {
     
    GetCheck(){
        if(event.target.checked)
-       console.log(event.target.value); 
+           if(Preguntas.indexOf(event.target.value) == -1)
+            Preguntas.push(event.target.value);
 	}
+   
+   CrearEx(){
+       window.location.href="CrearExamen?Quests="+Preguntas.toString();
+   }
         
   render() {
     const { classes } = this.props;
@@ -107,7 +113,7 @@ class Index extends React.Component {
           ))}
         </TableBody>
       </Table>
-      <Button variant="contained" className={classes.button} color="primary">
+      <Button variant="contained" className={classes.button} color="primary" onClick={this.CrearEx}>
         Crear
       </Button>
     </Paper>
