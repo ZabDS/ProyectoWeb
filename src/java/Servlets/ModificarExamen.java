@@ -54,15 +54,15 @@ public class ModificarExamen extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         inicializar(request, response);
-        String nombreDePregunta = request.getParameter("Nombre");
+        String nombreDeExamen = request.getParameter("Nombre");
         String accion = request.getParameter("submitButton");
         if ("Modificar".equals(accion)) {
-            eliminarExamen(nombreDePregunta);
-            RequestDispatcher dispatcher = request.getRequestDispatcher("/AltaPregunta");
+            eliminarExamen(nombreDeExamen);
+            RequestDispatcher dispatcher = request.getRequestDispatcher("/CrearExamen");
             dispatcher.forward(request, response);
 
         } else if ("Borrar".equals(accion)) {
-            eliminarExamen(nombreDePregunta);
+            eliminarExamen(nombreDeExamen);
             response.sendRedirect("Login");
 
         }

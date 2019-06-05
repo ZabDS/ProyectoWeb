@@ -40,6 +40,10 @@
         <servlet-name>ModificarExamen</servlet-name>
         <servlet-class>Servlets.ModificarExamen</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>VerExamen</servlet-name>
+        <servlet-class>Servlets.VerExamen</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>Login</servlet-name>
         <url-pattern>/Login</url-pattern>
@@ -79,6 +83,10 @@
     <servlet-mapping>
         <servlet-name>ModificarExamen</servlet-name>
         <url-pattern>/ModificarExamen</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>VerExamen</servlet-name>
+        <url-pattern>/VerExamen</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
