@@ -24,7 +24,7 @@ const {
   MuiThemeProvider,
   Typography,
   withStyles,
-} = window['material-ui'];
+} = MaterialUI;
 
 const theme = createMuiTheme({
   palette: {
@@ -69,20 +69,30 @@ const styles = theme => ({
   },
 });
 
-class Index extends React.Component {
+class Index extends React.Component {  
+ GetNick = event => {
+     Nick=event.target.value;
+  };
+  GetPass = event => {
+     Pass = event.target.value;
+  };
+  
+   handleClick(){
+       window.location.href="GetUser?User="+Nick+"&Pass="+Pass;
+	}
   render() {
     const { classes } = this.props;
     return (
       <MuiThemeProvider theme={theme}>
         <div className={classes.root}>
           <CssBaseline />
-          <Grid container spacing={40} className={classes.grids}>
-        <Grid item xs={4}>
+          <Grid container spacing={10} className={classes.grids}>
+        <Grid item xs={6}>
          <Card className={classes.card}>
            <CardActionArea>
             <CardMedia
           className={classes.media}
-          image="components/resources/CrearPregunta.svg"
+          image="components/resources/HacerExamen.svg"
           title="Crea"
             />
          <CardContent>
@@ -90,89 +100,37 @@ class Index extends React.Component {
             ¡Crea una Nueva Pregunta!
           </Typography>
           <Typography component="p">
-           Crea una pregunta calculada para que tus alumnos la resuelvan!
+           Crea una pregunta para integrarla a un exámen!
           </Typography>
         </CardContent>
            </CardActionArea>
            <CardActions>
-        <Button color="primary" href="CrearPregunta.html">
+        <Button color="primary" href="IrPreguntas?">
           Go!
         </Button>
       </CardActions>
          </Card>
          </Grid>
 
-         <Grid item xs={4}>
+         <Grid item xs={6}>
          <Card className={classes.card}>
            <CardActionArea>
             <CardMedia
           className={classes.media}
-          image="components/resources/VerPregunta.svg"
+          image="components/resources/HacerPregunta.svg"
           title="Ver"
             />
          <CardContent>
           <Typography gutterBottom variant="h5" component="h2">
-            ¡Ve las Preguntas que has Creado!
+            ¡Crea un nuevo exámen!
           </Typography>
           <Typography component="p">
-           Verifica que la pregunta que has hecho esta bien hecha!
+           Elige las preguntas e integralas para evaluar a tus alumnos!
           </Typography>
         </CardContent>
            </CardActionArea>
            <CardActions>
-        <Button color="primary" href="VerPregunta.html">
-          Go!
-        </Button>
-      </CardActions>
-         </Card>
-         </Grid>
-         
-         <Grid item xs={4}>
-         <Card className={classes.card}>
-           <CardActionArea>
-            <CardMedia
-          className={classes.media}
-          image="components/resources/ModificarPregunta.svg"
-          title="Modificar Pregunta"
-            />
-         <CardContent>
-          <Typography gutterBottom variant="h5" component="h2">
-            ¡Modifica Preguntas!
-          </Typography>
-          <Typography component="p">
-           ¿No te gusto como quedó tu pregunta? 
-           Modifícala ahora!
-          </Typography>
-        </CardContent>
-           </CardActionArea>
-           <CardActions>
-        <Button color="primary" href="ModificarPregunta">
-          Go!
-        </Button>
-      </CardActions>
-         </Card>
-         </Grid>
-         
-         <Grid item xs={4}>
-         <Card className={classes.card}>
-           <CardActionArea>
-            <CardMedia
-          className={classes.media}
-          image="components/resources/Borrar.svg"
-          title="Borrar Pregunta"
-            />
-         <CardContent>
-          <Typography gutterBottom variant="h5" component="h2">
-            ¡Borra Preguntas!
-          </Typography>
-          <Typography component="p">
-           ¿No te sirve más tu pregunta? 
-           Borrala ahora!
-          </Typography>
-        </CardContent>
-           </CardActionArea>
-           <CardActions>
-        <Button color="primary" href="BorrarPregunta.html">
+        <Button color="primary" href="IrExamen?">
           Go!
         </Button>
       </CardActions>
@@ -188,6 +146,4 @@ class Index extends React.Component {
 
 const App = withStyles(styles)(Index);
 
-ReactDOM.render(<App />, 
-document.getElementById('MainMenu'));
-
+ReactDOM.render(<App />, document.getElementById('MainMenu'));

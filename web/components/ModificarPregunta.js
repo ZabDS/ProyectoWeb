@@ -28,7 +28,7 @@ Button,
         MuiThemeProvider,
         Typography,
         withStyles,
-} = window['material-ui'];
+} = MaterialUI;
         const theme = createMuiTheme({
         palette: {
         type: 'dark',
