@@ -69,11 +69,7 @@ function createData(name) {
   return { name };
 }
 
-const rows = [
-  createData('Frozen yoghurt'),
-  createData('sss'),
-  createData('xsx'),
-];
+const rows = preguntasDisponibles;
 
 class Index extends React.Component {
     
@@ -96,12 +92,9 @@ class Index extends React.Component {
         </TableHead>
         <TableBody>
           {rows.map(row => (
-            <TableRow key={row.name} role="checkbox">
-                 <tableCell>
-                 <Checkbox value={row.name} onChange={this.GetCheck}></Checkbox>
-                 </tableCell>
-              <TableCell component="th" scope="row">
-                {row.name}
+            <TableRow key={row}>
+              <TableCell>
+                {row}
               </TableCell>
             </TableRow>
           ))}
@@ -119,4 +112,4 @@ class Index extends React.Component {
 const App = withStyles(styles)(Index);
 
 ReactDOM.render(<App />, 
-document.getElementById('HacerExamen'));
+document.getElementById('VerPreguntas'));

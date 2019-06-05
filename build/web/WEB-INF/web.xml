@@ -32,6 +32,10 @@
         <servlet-name>ObtenerPreguntas</servlet-name>
         <servlet-class>Servlets.ObtenerPreguntas</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>VerPreguntas</servlet-name>
+        <servlet-class>Servlets.VerPreguntas</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>Login</servlet-name>
         <url-pattern>/Login</url-pattern>
@@ -63,6 +67,10 @@
     <servlet-mapping>
         <servlet-name>ObtenerPreguntas</servlet-name>
         <url-pattern>/ObtenerPreguntas</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>VerPreguntas</servlet-name>
+        <url-pattern>/VerPreguntas</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
