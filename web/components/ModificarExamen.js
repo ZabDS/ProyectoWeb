@@ -77,9 +77,8 @@ var i;
 var Preguntas=[];
 var rows = [];
 var Name;
-
-for(i in PreguntasD){
-   rows.push(createData(PreguntasD[i]));
+for(i in preguntasDisponibles){
+   rows.push(createData(preguntasDisponibles[i]));
 }
 
 class Index extends React.Component {
@@ -88,14 +87,14 @@ class Index extends React.Component {
        if(event.target.checked)
            if(Preguntas.indexOf(event.target.value) == -1)
             Preguntas.push(event.target.value);
-	}
+	}0
         
    GetName = event => {
      Name=event.target.value;
   };
    
    CrearEx(){
-       window.location.href="CrearExamen?Quests="+Preguntas.toString()+"&TestName="+Name;
+       window.location.href="ModificarExamen?Quests="+Preguntas.toString()+"&TestName="+Name;
    }
    
         
@@ -103,14 +102,15 @@ class Index extends React.Component {
     const { classes } = this.props;
     return (
       <MuiThemeProvider theme={theme}>  
-          <TextField
-                id="TestName"
-                className={classes.textField}
-                margin="normal"
-                label="Nombre de Examen"
-                onChange={this.GetName}
-                />
         <Paper className={classes.root}>
+        <form method="post" action="ModificarExamen">
+        <select id="Nombre"
+                                        name="Nombre">{
+                        examenesDisponibles.map(function (pregunta) {
+                        return <option value={pregunta}>{pregunta}</option>;
+                                    })
+                                    }
+                                </select>
       <Table className={classes.table}>
         <TableHead>
           <TableRow>
@@ -122,7 +122,7 @@ class Index extends React.Component {
           {rows.map(row => (
             <TableRow key={row.name} role="checkbox">
                  <tableCell>
-                 <Checkbox value={row.name} onChange={this.GetCheck}></Checkbox>
+                 <Checkbox name="checkbox" value={row.name} onChange={this.GetCheck}></Checkbox>
                  </tableCell>
               <TableCell component="th" scope="row">
                 {row.name}
@@ -131,9 +131,10 @@ class Index extends React.Component {
           ))}
         </TableBody>
       </Table>
-      <Button variant="contained" className={classes.button} color="primary" onClick={this.CrearEx}>
-        Crear
-      </Button>
+                                      <input type="submit" name="submitButton" value="Modificar" />
+                                <input type="submit" name="submitButton" value="Borrar" />
+
+      </form>
     </Paper>
       </MuiThemeProvider>
     );
