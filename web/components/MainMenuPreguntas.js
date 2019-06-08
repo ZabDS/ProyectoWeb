@@ -100,12 +100,12 @@ class Index extends React.Component {
             ¡Crea una Nueva Pregunta!
           </Typography>
           <Typography component="p">
-           Crea una pregunta calculada para que tus alumnos la resuelvan!
+          ¡Crea una pregunta calculada para que tus alumnos la resuelvan!
           </Typography>
         </CardContent>
            </CardActionArea>
            <CardActions>
-        <Button color="primary" href="CrearPregunta.html">
+        <Button color="primary" href="CrearPreguntaCalculada.html">
           Go!
         </Button>
       </CardActions>
@@ -143,20 +143,20 @@ class Index extends React.Component {
             <CardMedia
           className={classes.media}
           image="components/resources/ModificarPregunta.svg"
-          title="Modificar Pregunta"
+          title="Crea Pregunta Algebraica"
             />
          <CardContent>
           <Typography gutterBottom variant="h5" component="h2">
-            ¡Modifica Preguntas!
+            ¡Crea Una Pregunta Algebráica!
           </Typography>
           <Typography component="p">
-           ¿No te gusto como quedó tu pregunta? 
-           Modifícala ahora!
+          ¡Crea una pregunta calculada para que tus alumnos la resuelvan!
+
           </Typography>
         </CardContent>
            </CardActionArea>
            <CardActions>
-        <Button color="primary" href="ModificarPregunta">
+        <Button color="primary" href="CrearPreguntaAlgebraica.html">
           Go!
         </Button>
       </CardActions>

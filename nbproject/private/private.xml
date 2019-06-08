@@ -1,20 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project-private xmlns="http://www.netbeans.org/ns/project-private/1">
-    <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
+    <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="2"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/home/nexus/Code/Web/Proyecto/src/java/Servlets/ModificaPreguntas.java</file>
-            <file>file:/home/nexus/Code/Web/Proyecto/web/ModificarPregunta.jsp</file>
-            <file>file:/home/nexus/Code/Web/Proyecto/web/components/VerPreguntas.js</file>
-            <file>file:/home/nexus/Code/Web/Proyecto/web/components/MainMenuPreguntas.js</file>
-            <file>file:/home/nexus/Code/Web/Proyecto/src/java/Servlets/AltaPregunta.java</file>
-            <file>file:/home/nexus/Code/Web/Proyecto/web/VerPreguntas.jsp</file>
-            <file>file:/home/nexus/Code/Web/Proyecto/src/java/Servlets/ObtenerPreguntas.java</file>
-            <file>file:/home/nexus/Code/Web/Proyecto/web/components/HacerExamen.js</file>
-            <file>file:/home/nexus/Code/Web/Proyecto/src/java/Servlets/CrearExamen.java</file>
-            <file>file:/home/nexus/Code/Web/Proyecto/src/java/Servlets/VerPreguntas.java</file>
-            <file>file:/home/nexus/Code/Web/Proyecto/web/CrearExamenP.jsp</file>
-            <file>file:/home/nexus/Code/Web/Proyecto/web/components/ModificarPregunta.js</file>
+            <file>file:/home/nexus/Code/Web/Proyecto/ProyectoWeb/web/components/CrearPreguntaAlgebraica.js</file>
+            <file>file:/home/nexus/Code/Web/Proyecto/ProyectoWeb/src/java/Servlets/AltaPregunta.java</file>
+            <file>file:/home/nexus/Code/Web/Proyecto/ProyectoWeb/src/java/Objetos/Pregunta.java</file>
+            <file>file:/home/nexus/Code/Web/Proyecto/ProyectoWeb/web/components/CrearPreguntaCalculada.js</file>
         </group>
     </open-files>
 </project-private>

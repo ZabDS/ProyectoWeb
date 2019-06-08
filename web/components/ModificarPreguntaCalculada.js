@@ -119,10 +119,12 @@ class Index extends React.Component {
                                         </Typography>
                                         <Typography>
                                             <form className={classes.container} noValidate autoComplete="off" method="POST" action="AltaPregunta">
-                                                
+                                                <input type="hidden" name="tipoDePregunta" value="calculada"/>
                                                 <TextField
                                                    id="Nombre"
                                                    name="Nombre"
+                                                    value={nombreDePregunta}
+
                                                    className={classes.textField}
                                                    margin="normal"
                                                    label="Nombre de la pregunta:"
@@ -132,6 +134,7 @@ class Index extends React.Component {
                                                 <TextField
                                                     id="Texto"
                                                     name="Texto"
+                                                   value={enunciado}                                                   
                                                     className={classes.textField}
                                                     margin="normal"
                                                     label="Enunciado de tu pregunta:"
@@ -145,6 +148,7 @@ class Index extends React.Component {
                                                 <TextField
                                                     id="Puntuacion"
                                                     name="Puntuacion"
+                                                    value={puntuacion}
                                                     className={classes.textField}
                                                     margin="normal"
                                                     label="Puntuación de la pregunta:"
@@ -164,6 +168,7 @@ class Index extends React.Component {
                                                 <TextField
                                                     id="Formula"
                                                     name="Formula"
+                                                    value={formula}
                                                     className={classes.textField}
                                                     margin="normal"
                                                     label="Fórmula para resolver la pregunta:"
@@ -173,7 +178,7 @@ class Index extends React.Component {
                                                     InputLabelProps={{shrink: true, }}
                                                     onChange={this.handleChange}
                                                     />
-                                                <input type="submit" value="Crear!"/>
+                                                <input type="submit" value="Modificar!"/>
                                             </form>
                                         </Typography>
                                     </CardContent>
@@ -190,5 +195,5 @@ class Index extends React.Component {
 
 const App = withStyles(styles)(Index);
 
-ReactDOM.render(<App />, document.getElementById('CrearPregunta'));
+ReactDOM.render(<App />, document.getElementById('ModificarPregunta'));
 

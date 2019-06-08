@@ -87,6 +87,7 @@ class Index extends React.Component {
         <TableHead>
           <TableRow>
             <TableCell>Pregunta</TableCell>
+                        <TableCell align="right">Opciones</TableCell>
           </TableRow>
         </TableHead>
         <TableBody>
@@ -95,6 +96,8 @@ class Index extends React.Component {
               <TableCell>
                 {row}
               </TableCell>
+                            <TableCell align="right">
+                                <a href={"ModificaPreguntas?nombre=" + row}>Modificar</a>/<a href={"EliminaPreguntas?nombre=" + row}>Eliminar</a></TableCell>
             </TableRow>
           ))}
         </TableBody>
