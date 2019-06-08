@@ -29,7 +29,7 @@ public class IrPreguntas extends HttpServlet {
                 out.println("<!DOCTYPE html>");
                 out.println("<html>");
                 out.println("<head>"); 
-                out.println("<title>MainMenu</title>");            
+                out.println("<title>Menu Principal</title>");            
                 out.println(""
                         + "<meta charset=\"utf-8\" />\n" +
                       "    <meta name=\"viewport\" content=\"minimum-scale=1, initial-scale=1, width=device-width, shrink-to-fit=no\" />\n" +

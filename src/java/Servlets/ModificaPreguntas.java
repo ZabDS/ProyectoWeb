@@ -13,47 +13,74 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-
+import javax.xml.parsers.DocumentBuilder;
+import javax.xml.parsers.DocumentBuilderFactory;
+import org.w3c.dom.Document;
 /**
  *
  * @author nexus
  */
 public class ModificaPreguntas extends HttpServlet {
 
+    HttpServletRequest request;
+    HttpServletResponse response;
+    String path;
+    String pathArchivo;
+    Document doc;
+
+    protected void inicializar(HttpServletRequest request, HttpServletResponse response) {
+        this.request = request;
+        this.response = response;
+        this.path = request.getRealPath("/") + "XML/PREGUNTAS/";
+    }
+
+    @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        String path = request.getRealPath("/") + "XML/PREGUNTAS/";
-        ArrayList<String> nombreDePreguntas = generarListaDePreguntas(path);
-        RequestDispatcher rd = request.getRequestDispatcher("ModificarPregunta.jsp");
-        request.setAttribute("preguntasDisponibles", convertirAArregloJS(nombreDePreguntas.toArray(new String[0])));
-        rd.forward(request, response);
+        inicializar(request, response);
+        String nombreDePregunta = (String) request.getParameter("nombre");
+        pathArchivo = path + nombreDePregunta + ".xml";
+        doc = generarDocumento();
+        estructurarDeFormulario(nombreDePregunta);
     }
 
-    protected void doPost(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
-        String path = request.getRealPath("/") + "XML/PREGUNTAS/";
-        String nombreDePregunta = request.getParameter("Nombre");
-        String accion = request.getParameter("submitButton");
-        if ("Modificar".equals(accion)) {
-                        eliminarPregunta(path, nombreDePregunta);
-            RequestDispatcher dispatcher = request.getRequestDispatcher("/AltaPregunta");
-            dispatcher.forward(request, response);
-
-        } else if ("Borrar".equals(accion)) {
-            eliminarPregunta(path, nombreDePregunta);
-            response.sendRedirect("Login");
-
+    protected Document generarDocumento() {
+        try {
+            File archivoXML = new File(pathArchivo);
+            DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
+            DocumentBuilder dBuilder = dbFactory.newDocumentBuilder();
+            Document doc = dBuilder.parse(archivoXML);
+            doc.getDocumentElement().normalize();
+            return doc;
+        } catch (Exception e) {
+            return null;
         }
     }
 
-    protected void eliminarPregunta(String path, String nombreDePregunta) {
-        File file = new File(path + nombreDePregunta + ".xml");
-        if (file.delete()) {
-            System.out.println("200");
-        } else {
-            System.out.println("500");
-        }
+    protected void estructurarDeFormulario(String nombreDePregunta) {
+        request.setAttribute("nombreDePregunta", atributoAString("nombreDePregunta"));
+        request.setAttribute("enunciado", atributoAString("enunciado"));
+        request.setAttribute("puntuacion", atributoAString("puntuacion"));
+        String tipoDePregunta = atributoAString("tipoDePregunta");
+        try {
+            if (tipoDePregunta.equals("Algebraica")) {
+                request.setAttribute("solucion", atributoAString("solucion"));
+                RequestDispatcher rd = request.getRequestDispatcher("ModificarPreguntaAlgebraica.jsp");
+                rd.forward(request, response);
+            } 
+            else{
+                request.setAttribute("formula", atributoAString("formula"));
+                RequestDispatcher rd = request.getRequestDispatcher("ModificarPreguntaCalculada.jsp");
+                rd.forward(request, response);
+            }
+        } catch (Exception e) {}
+        return;
     }
+
+    protected String atributoAString(String atributo) {
+        return doc.getElementsByTagName(atributo).item(0).getTextContent();
+ 
+        }
 
     protected ArrayList<String> generarListaDePreguntas(String path) {
         ArrayList<String> nombrePreguntas = new ArrayList<String>();

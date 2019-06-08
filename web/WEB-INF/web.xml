@@ -13,7 +13,7 @@
         <servlet-class>Servlets.AltaPregunta</servlet-class>
     </servlet>
     <servlet>
-        <servlet-name>ModificarPregunta</servlet-name>
+        <servlet-name>ModificaPreguntas</servlet-name>
         <servlet-class>Servlets.ModificaPreguntas</servlet-class>
     </servlet>
     <servlet>
@@ -40,6 +40,10 @@
         <servlet-name>ModificarExamen</servlet-name>
         <servlet-class>Servlets.ModificarExamen</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>EliminaPreguntas</servlet-name>
+        <servlet-class>Servlets.EliminaPreguntas</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>Login</servlet-name>
         <url-pattern>/Login</url-pattern>
@@ -53,8 +57,8 @@
         <url-pattern>/AltaPregunta</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
-        <servlet-name>ModificarPregunta</servlet-name>
-        <url-pattern>/ModificarPregunta</url-pattern>
+        <servlet-name>ModificaPreguntas</servlet-name>
+        <url-pattern>/ModificaPreguntas</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>CrearExamen</servlet-name>
@@ -79,6 +83,10 @@
     <servlet-mapping>
         <servlet-name>ModificarExamen</servlet-name>
         <url-pattern>/ModificarExamen</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>EliminaPreguntas</servlet-name>
+        <url-pattern>/EliminaPreguntas</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
