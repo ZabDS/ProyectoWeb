@@ -92,7 +92,7 @@ class Index extends React.Component {
                 {row}
               </TableCell>
                             <TableCell align="right">
-                                <a href={"ModificarExamen?nombre=" + row}>Modificar</a>/<a href={"EliminaExamen?nombre=" + row}>Eliminar</a></TableCell>
+                                <a href={"ProbarExamen?nombre=" + row}>Probar</a>/<a href={"ModificarExamen?nombre=" + row}>Modificar</a>/<a href={"EliminaExamen?nombre=" + row}>Eliminar</a></TableCell>
             </TableRow>
           ))}
         </TableBody>

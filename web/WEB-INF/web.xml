@@ -52,6 +52,10 @@
         <servlet-name>EliminaExamen</servlet-name>
         <servlet-class>Servlets.EliminaExamen</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>ProbarExamen</servlet-name>
+        <servlet-class>Servlets.ProbarExamen</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>Login</servlet-name>
         <url-pattern>/Login</url-pattern>
@@ -103,6 +107,10 @@
     <servlet-mapping>
         <servlet-name>EliminaExamen</servlet-name>
         <url-pattern>/EliminaExamen</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ProbarExamen</servlet-name>
+        <url-pattern>/ProbarExamen</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

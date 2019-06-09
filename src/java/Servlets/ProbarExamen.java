@@ -15,54 +15,29 @@ import org.jdom.Document;
 import org.jdom.Element;
 import org.jdom.JDOMException;
 import org.jdom.input.SAXBuilder;
- 
-    public class ProbarExamen extends HttpServlet {
-    @Override
+
+public class ProbarExamen extends HttpServlet {
+
+    HttpServletRequest request;
+    HttpServletResponse response;
+    String pathExamen;
+
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
-        throws ServletException, IOException {
-            response.setContentType("text/html;charset=UTF-8");
-            HttpSession session= request.getSession();
-            String PreguntasDisponibles,PreguntasExamen;
-            String USER= (String)session.getAttribute("User");
-            //OBTENER LISTA DE PREGUNTAS
-            String path = request.getRealPath("/") + "XML/PREGUNTAS/";
-            ArrayList<String> nombreDePreguntas = generarListaDePreguntas(path);
-            //FILTRAR PREGUNTAS
-            
-            //LLAMAR A COMPONENTE
-            PrintWriter out = response.getWriter(); 
-            PreguntasDisponibles=convertirAArregloJS(nombreDePreguntas.toArray(new String[0]));    
-                
-                out.println("<!DOCTYPE html>");
-                out.println("<html>");
-                out.println("<head>"); 
-                out.println("<title>MainMenu</title>");            
-                out.println(""
-                        + "<meta charset=\"utf-8\" />\n" +
-                      "    <meta name=\"viewport\" content=\"minimum-scale=1, initial-scale=1, width=device-width, shrink-to-fit=no\" />\n" +
-                      "    <script src=\"https://unpkg.com/react@latest/umd/react.development.js\" crossorigin=\"anonymous\"></script>\n" +
-                      "    <script src=\"https://unpkg.com/react-dom@latest/umd/react-dom.development.js\"></script>\n" +
-                      "    <script src=\"https://unpkg.com/@material-ui/core@latest/umd/material-ui.development.js\" crossorigin=\"anonymous\"></script>\n" +
-                      "    <script src=\"https://unpkg.com/babel-standalone@latest/babel.min.js\" crossorigin=\"anonymous\"></script>\n" +
-                      "    \n" +
-                      "    <link rel=\"stylesheet\" href=\"https://fonts.googleapis.com/css?family=Roboto:300,400,500\" />\n" +
-                      "    <link rel=\"stylesheet\" href=\"https://fonts.googleapis.com/icon?family=Material+Icons\" />"
-                        + "<link rel=\"stylesheet\" href=\"components/App.css\" />");            
-                out.println("</head>");
-                out.println("<body>");
-                
-              
-                out.println("<script type=\"text/babel\">const User = '"+USER+"';</script>");
-                out.println("<script type=\"text/babel\">var PreguntasE = "+PreguntasDisponibles+";</script>");
-                out.println("<div id=\"AppBar\"></div>");                
-                out.println("<div id=\"ProbarExamen\"></div>");                
-               
-                out.println("<script type=\"text/babel\" src=\"components/ProbarExamen.js\"></script>");
-                out.println("<script type=\"text/babel\" src=\"components/AppBar.js\"></script>");
-                out.println("</body>");
-                out.println("</html>");
+            throws ServletException, IOException {
+        inicializar(request, response);
+        RequestDispatcher rd = request.getRequestDispatcher("ProbarExamen.jsp");
+        request.setAttribute("preguntasDisponibles", "d");
+        rd.forward(request, response);
     }
-    
+
+    protected void inicializar(HttpServletRequest request, HttpServletResponse response) {
+        this.request = request;
+        this.response = response;
+        String nombreDeExamen = (String) request.getParameter("nombre");
+        this.pathExamen = request.getRealPath("/") + "XML/EXAMENES/" + nombreDeExamen + ".xml";
+
+    }
+
     protected ArrayList<String> generarListaDePreguntas(String path) {
         ArrayList<String> nombrePreguntas = new ArrayList<String>();
         final File carpeta = new File(path);
@@ -73,13 +48,13 @@ import org.jdom.input.SAXBuilder;
         }
         return nombrePreguntas;
     }
-    
-     protected ArrayList<String> FiltrarPreguntas(ArrayList<String> Disponibles,String XMLName) {
+
+    protected ArrayList<String> FiltrarPreguntas(ArrayList<String> Disponibles, String XMLName) {
         ArrayList<String> nombrePreguntas = new ArrayList<String>();
-        
+
         return nombrePreguntas;
     }
-    
+
     public static String convertirAArregloJS(String[] arr) {
         StringBuffer sb = new StringBuffer();
         sb.append("[");
