@@ -20,8 +20,7 @@ import javax.servlet.http.HttpSession;
  *
  * @author nexus
  */
-public class VerPreguntas extends HttpServlet {
-
+public class VerExamenes extends HttpServlet {
     HttpServletRequest request;
     HttpServletResponse response;
     String path;
@@ -30,21 +29,21 @@ public class VerPreguntas extends HttpServlet {
             throws ServletException, IOException {
         HttpSession session = request.getSession();
         inicializar(request, response);
-        ArrayList<String> nombreDePreguntas = generarListaDePreguntas(path);
-        RequestDispatcher rd = request.getRequestDispatcher("VerPreguntas.jsp");
+        ArrayList<String> examenesDisponibles = generarListaDeExamenes(path);
+        RequestDispatcher rd = request.getRequestDispatcher("VerExamenes.jsp");
         String USER = (String) session.getAttribute("User");
         String PASS = (String) session.getAttribute("Pass");
-        request.setAttribute("preguntasDisponibles", convertirAArregloJS(nombreDePreguntas.toArray(new String[0])));
+        request.setAttribute("examenesDisponibles", convertirAArregloJS(examenesDisponibles.toArray(new String[0])));
         rd.forward(request, response);
     }
 
     protected void inicializar(HttpServletRequest request, HttpServletResponse response) {
         this.request = request;
         this.response = response;
-        this.path = request.getRealPath("/") + "XML/PREGUNTAS/";
+        this.path = request.getRealPath("/") + "XML/EXAMENES/";
     }
 
-    protected ArrayList<String> generarListaDePreguntas(String path) {
+    protected ArrayList<String> generarListaDeExamenes(String path) {
         ArrayList<String> nombrePreguntas = new ArrayList<String>();
         final File carpeta = new File(path);
         try{
@@ -69,5 +68,4 @@ public class VerPreguntas extends HttpServlet {
         sb.append("]");
         return sb.toString();
     }
-
 }

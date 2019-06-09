@@ -104,7 +104,8 @@ class Index extends React.Component {
     return (
       <MuiThemeProvider theme={theme}>  
           <TextField
-                id="TestName"
+                id="nombre"
+                name="nombre"
                 className={classes.textField}
                 margin="normal"
                 label="Nombre de Examen"

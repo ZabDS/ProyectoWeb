@@ -21,7 +21,6 @@ public class IrPreguntas extends HttpServlet {
             response.setContentType("text/html;charset=UTF-8");
             HttpSession session= request.getSession();
             String USER,PASS;
-            int validar=0;
             USER= (String)session.getAttribute("User");
             PASS= (String)session.getAttribute("Pass");
             
@@ -56,7 +55,5 @@ public class IrPreguntas extends HttpServlet {
                 out.println("<script type=\"text/babel\" src=\"components/AppBar.js\"></script>");
                 out.println("</body>");
                 out.println("</html>");
-            session.setAttribute("user",USER);
-            session.setAttribute("pass",PASS);
     }
 }

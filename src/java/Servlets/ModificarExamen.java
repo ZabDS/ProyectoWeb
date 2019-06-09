@@ -5,16 +5,20 @@
  */
 package Servlets;
 
-import static Servlets.ModificaPreguntas.convertirAArregloJS;
 import java.io.File;
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.util.ArrayList;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.xml.parsers.DocumentBuilder;
+import javax.xml.parsers.DocumentBuilderFactory;
+import org.w3c.dom.Document;
+import org.w3c.dom.Element;
+import org.w3c.dom.Node;
+import org.w3c.dom.NodeList;
 
 /**
  *
@@ -25,47 +29,77 @@ public class ModificarExamen extends HttpServlet {
     HttpServletRequest request;
     HttpServletResponse response;
     String pathPreguntas;
-    String pathExamenes;
+    String pathExamen;
+    Document doc;
 
+    @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         inicializar(request, response);
-        RequestDispatcher rd = request.getRequestDispatcher("ModificarExamen.jsp");
+        String nombreDeExamen = (String) request.getParameter("nombre");
+        pathExamen = request.getRealPath("/") + "XML/EXAMENES/" + nombreDeExamen + ".xml";
+        doc = generarDocumento();
+        
         establecerAtributos();
+        RequestDispatcher rd = request.getRequestDispatcher("ModificarExamen.jsp");
+
         rd.forward(request, response);
+    }
+    
+    @Override
+    protected void doPost(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        inicializar(request, response);
+        reemplazarExamen();
+    }
+
+    protected void reemplazarExamen() {
+        try {
+            eliminarExamen(request.getParameter("nombreOriginal"));
+            RequestDispatcher rs = request.getRequestDispatcher("CrearExamen");
+            rs.forward(request, response);
+        } catch (Exception e) {
+        }
     }
 
     protected void establecerAtributos() {
-        ArrayList<String> nombreDeExamenes = generarListaDeExamenes();
         ArrayList<String> nombreDePreguntas = generarListaDePreguntas();
-
-        request.setAttribute("examenesDisponibles", convertirAArregloJS(nombreDeExamenes.toArray(new String[0])));
+        ArrayList<String> preguntasEnExamen = conseguirPreguntasEnExamen();
+        request.setAttribute("preguntasEnExamen", convertirAArregloJS(preguntasEnExamen.toArray(new String[0])));
         request.setAttribute("preguntasDisponibles", convertirAArregloJS(nombreDePreguntas.toArray(new String[0])));
+        request.setAttribute("nombreDeExamen", request.getParameter("nombre"));
 
+    }
+
+    protected ArrayList<String> conseguirPreguntasEnExamen() {
+        ArrayList<String> preguntasEnExamen = new ArrayList<String>();
+        Element elementoRoot = doc.getDocumentElement();
+        NodeList listaDeNodosDePreguntas = elementoRoot.getElementsByTagName("Pregunta");
+        if (listaDeNodosDePreguntas != null && listaDeNodosDePreguntas.getLength() > 0) {
+            for (int i = 0; i < listaDeNodosDePreguntas.getLength(); i++) {
+                Node nodoTemp = listaDeNodosDePreguntas.item(i);
+                preguntasEnExamen.add(nodoTemp.getTextContent());
+            }
+        }
+        return preguntasEnExamen;
+    }
+
+    protected Document generarDocumento() {
+        try {
+            File archivoXML = new File(pathExamen);
+            DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
+            DocumentBuilder dBuilder = dbFactory.newDocumentBuilder();
+            Document doc = dBuilder.parse(archivoXML);
+            return doc;
+        } catch (Exception e) {
+            return null;
+        }
     }
 
     protected void inicializar(HttpServletRequest request, HttpServletResponse response) {
         this.request = request;
         this.response = response;
-        this.pathExamenes = request.getRealPath("/") + "XML/EXAMENES/";
         this.pathPreguntas = request.getRealPath("/") + "XML/PREGUNTAS/";
-    }
-
-    protected void doPost(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
-        inicializar(request, response);
-        String nombreDeExamen = request.getParameter("Nombre");
-        String accion = request.getParameter("submitButton");
-        if ("Modificar".equals(accion)) {
-            eliminarExamen(nombreDeExamen);
-            RequestDispatcher dispatcher = request.getRequestDispatcher("/CrearExamen");
-            dispatcher.forward(request, response);
-
-        } else if ("Borrar".equals(accion)) {
-            eliminarExamen(nombreDeExamen);
-            response.sendRedirect("Login");
-
-        }
     }
 
     protected ArrayList<String> generarListaDePreguntas() {
@@ -80,23 +114,12 @@ public class ModificarExamen extends HttpServlet {
     }
 
     protected void eliminarExamen(String nombreDeExamen) {
-        File file = new File(this.pathExamenes + nombreDeExamen + ".xml");
+        File file = new File(request.getRealPath("/") + "XML/EXAMENES/" + nombreDeExamen + ".xml");
         if (file.delete()) {
             System.out.println("200");
         } else {
             System.out.println("500");
         }
-    }
-
-    protected ArrayList<String> generarListaDeExamenes() {
-        ArrayList<String> nombrePreguntas = new ArrayList<String>();
-        final File carpeta = new File(this.pathExamenes);
-        for (final File fileEntry : carpeta.listFiles()) {
-            String nombre = fileEntry.getName();
-            String nombreSinExtension = nombre.substring(0, nombre.length() - 4);
-            nombrePreguntas.add(nombreSinExtension);
-        }
-        return nombrePreguntas;
     }
 
     public static String convertirAArregloJS(String[] arr) {

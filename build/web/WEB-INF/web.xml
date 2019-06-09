@@ -44,6 +44,14 @@
         <servlet-name>EliminaPreguntas</servlet-name>
         <servlet-class>Servlets.EliminaPreguntas</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>VerExamenes</servlet-name>
+        <servlet-class>Servlets.VerExamenes</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>EliminaExamen</servlet-name>
+        <servlet-class>Servlets.EliminaExamen</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>Login</servlet-name>
         <url-pattern>/Login</url-pattern>
@@ -87,6 +95,14 @@
     <servlet-mapping>
         <servlet-name>EliminaPreguntas</servlet-name>
         <url-pattern>/EliminaPreguntas</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>VerExamenes</servlet-name>
+        <url-pattern>/VerExamenes</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>EliminaExamen</servlet-name>
+        <url-pattern>/EliminaExamen</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

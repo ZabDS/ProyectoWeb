@@ -99,7 +99,7 @@ class Index extends React.Component {
     }
 
     handleChange(event) {
-        this.setState({value: event.target.value});
+        this.setState({defaultValue: event.target.defaultValue});
     }
     render() {
         const {classes} = this.props;
@@ -117,11 +117,12 @@ class Index extends React.Component {
                                             Modificar Pregunta
                                         </Typography>
                                         <Typography>
-                                            <form className={classes.container} noValidate autoComplete="off" method="POST" action="AltaPregunta">
+                                            <form className={classes.container} noValidate autoComplete="off" method="POST" action="ModificaPreguntas">
+                                            <input type="hidden" name="nombreOriginal" defaultValue={nombreDePregunta}/>
                                                 <TextField
                                                    id="Nombre"
                                                    name="Nombre"
-                                                   value={nombreDePregunta}
+                                                   defaultValue={nombreDePregunta}
                                                    className={classes.textField}
                                                    margin="normal"
                                                    label="Nombre de la pregunta:"
@@ -131,7 +132,7 @@ class Index extends React.Component {
                                                 <TextField
                                                     id="Texto"
                                                     name="Texto"
-                                                    value={enunciado}
+                                                    defaultValue={enunciado}
                                                     className={classes.textField}
                                                     margin="normal"
                                                     label="Enunciado de tu pregunta:"
@@ -144,7 +145,7 @@ class Index extends React.Component {
                                                 <TextField
                                                     id="Puntuacion"
                                                     name="Puntuacion"
-                                                    value={puntuacion}
+                                                    defaultValue={puntuacion}
                                                     className={classes.textField}
                                                     margin="normal"
                                                     label="Puntuación de la pregunta:"
@@ -164,7 +165,7 @@ class Index extends React.Component {
                                                 <TextField
                                                     id="solucion"
                                                     name="solucion"
-                                                    value={solucion}
+                                                    defaultValue={solucion}
                                                     className={classes.textField}
                                                     margin="normal"
                                                     label="Solución de la pregunta:"
@@ -173,7 +174,7 @@ class Index extends React.Component {
                                                     InputLabelProps={{shrink: true, }}
                                                     onChange={this.handleChange}
                                                     />
-                                                   <input type="hidden" name="tipoDePregunta" value="algebraica"/>
+                                                   <input type="hidden" name="tipoDePregunta" defaultValue="algebraica"/>
 
                                                 <input type="submit" value="Modificar!"/>
                                             </form>

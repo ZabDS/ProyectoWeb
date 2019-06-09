@@ -100,7 +100,7 @@ class Index extends React.Component {
     }
 
     handleChange(event) {
-        this.setState({value: event.target.value});
+        this.setState({defaultValue: event.target.defaultValue});
     }
     render() {
         const {classes} = this.props;
@@ -118,12 +118,13 @@ class Index extends React.Component {
                                             Crear Pregunta
                                         </Typography>
                                         <Typography>
-                                            <form className={classes.container} noValidate autoComplete="off" method="POST" action="AltaPregunta">
-                                                <input type="hidden" name="tipoDePregunta" value="calculada"/>
+                                            <form className={classes.container} noValidate autoComplete="off" method="POST" action="ModificaPreguntas">
+                                                <input type="hidden" name="tipoDePregunta" defaultValue="calculada"/>
+                                                <input type="hidden" name="nombreOriginal" defaultValue={nombreDePregunta}/>
                                                 <TextField
                                                    id="Nombre"
                                                    name="Nombre"
-                                                    value={nombreDePregunta}
+                                                    defaultValue={nombreDePregunta}
 
                                                    className={classes.textField}
                                                    margin="normal"
@@ -134,7 +135,7 @@ class Index extends React.Component {
                                                 <TextField
                                                     id="Texto"
                                                     name="Texto"
-                                                   value={enunciado}                                                   
+                                                   defaultValue={enunciado}                                                   
                                                     className={classes.textField}
                                                     margin="normal"
                                                     label="Enunciado de tu pregunta:"
@@ -148,7 +149,7 @@ class Index extends React.Component {
                                                 <TextField
                                                     id="Puntuacion"
                                                     name="Puntuacion"
-                                                    value={puntuacion}
+                                                    defaultValue={puntuacion}
                                                     className={classes.textField}
                                                     margin="normal"
                                                     label="Puntuación de la pregunta:"
@@ -168,7 +169,7 @@ class Index extends React.Component {
                                                 <TextField
                                                     id="Formula"
                                                     name="Formula"
-                                                    value={formula}
+                                                    defaultValue={formula}
                                                     className={classes.textField}
                                                     margin="normal"
                                                     label="Fórmula para resolver la pregunta:"

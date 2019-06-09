@@ -1,7 +1,6 @@
 package Servlets;
 
 import java.io.File;
-import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.List;
@@ -12,7 +11,6 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import org.jdom.*;
 import org.jdom.input.SAXBuilder;
-import org.jdom.output.XMLOutputter;
  
 public class Login extends HttpServlet {
     @Override
@@ -78,7 +76,7 @@ public class Login extends HttpServlet {
                 out.println("<script type=\"text/babel\" src=\"components/AppBar.js\"></script>");
                 out.println("</body>");
                 out.println("</html>");
-            session.setAttribute("user",USER);
-            session.setAttribute("pass",PASS);
+            session.setAttribute("User",USER);
+            session.setAttribute("Pass",PASS);
     }
 }

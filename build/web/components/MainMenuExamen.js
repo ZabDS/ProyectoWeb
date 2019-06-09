@@ -86,8 +86,8 @@ class Index extends React.Component {
       <MuiThemeProvider theme={theme}>
         <div className={classes.root}>
           <CssBaseline />
-          <Grid container spacing={40} className={classes.grids}>
-        <Grid item xs={4}>
+          <Grid container spacing={10} className={classes.grids}>
+        <Grid item xs={6}>
          <Card className={classes.card}>
            <CardActionArea>
             <CardMedia
@@ -112,7 +112,7 @@ class Index extends React.Component {
          </Card>
          </Grid>
 
-         <Grid item xs={4}>
+         <Grid item xs={6}>
          <Card className={classes.card}>
            <CardActionArea>
             <CardMedia
@@ -130,39 +130,13 @@ class Index extends React.Component {
         </CardContent>
            </CardActionArea>
            <CardActions>
-        <Button color="primary" href="VerPregunta.html">
+        <Button color="primary" href="VerExamenes?">
           Go!
-        </Button>
+          </Button>
       </CardActions>
          </Card>
          </Grid>
-         
-         <Grid item xs={4}>
-         <Card className={classes.card}>
-           <CardActionArea>
-            <CardMedia
-          className={classes.media}
-          image="components/resources/ModificarExamen.svg"
-          title="Modificar Pregunta"
-            />
-         <CardContent>
-          <Typography gutterBottom variant="h5" component="h2">
-            ¡Modifica Examen!
-          </Typography>
-          <Typography component="p">
-           ¿No te gusto como quedó tu Examen? 
-           Modifícala ahora!
-          </Typography>
-        </CardContent>
-           </CardActionArea>
-           <CardActions>
-        <Button color="primary" href="ModificarExamen">
-          Go!
-        </Button>
-      </CardActions>
-         </Card>
-         </Grid>
-         
+         s
          </Grid>
         </div>
       </MuiThemeProvider>

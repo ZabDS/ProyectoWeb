@@ -1,2 +1,2 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<pregunta><autor /><nombreDePregunta>Prueba</nombreDePregunta><enunciado>{m}</enunciado><puntuacion>10</puntuacion><tipoDePregunta>Calculada</tipoDePregunta><variable>m</variable><formula>{m}</formula></pregunta>
+<pregunta><autor>ROOT</autor><nombreDePregunta>Prueba</nombreDePregunta><enunciado>m</enunciado><puntuacion>10</puntuacion><tipoDePregunta>Algebraica</tipoDePregunta><solucion>m</solucion></pregunta>

@@ -74,41 +74,32 @@ function createData(name) {
   return { name };
 }
 var i;
-var Preguntas=[];
-var rows = [];
+var rows = preguntasDisponibles;
 var Name;
 
-for(i in PreguntasD){
-   rows.push(createData(PreguntasD[i]));
-}
 
 class Index extends React.Component {
-    
-   GetCheck(){
-       if(event.target.checked)
-           if(Preguntas.indexOf(event.target.value) == -1)
-            Preguntas.push(event.target.value);
-	}
-        
-   GetName = event => {
-     Name=event.target.value;
-  };
-   
-   CrearEx(){
-       window.location.href="CrearExamen?Quests="+Preguntas.toString()+"&TestName="+Name;
-   }
-   
+            
+  handleChange(event) {
+    this.setState({value: event.target.value});
+  }
         
   render() {
     const { classes } = this.props;
     return (
       <MuiThemeProvider theme={theme}>  
+                                                     
+        <form className={classes.container} noValidate autoComplete="off" method="POST" action="ModificarExamen">
+        <input type="hidden" name="nombreOriginal" defaultValue={nombreDeExamen}/>
+
           <TextField
                 id="TestName"
+                name="nombre"
+                defaultValue={nombreDeExamen}
                 className={classes.textField}
                 margin="normal"
                 label="Nombre de Examen"
-                onChange={this.GetName}
+                onChange={this.handleChange}
                 />
         <Paper className={classes.root}>
       <Table className={classes.table}>
@@ -120,23 +111,24 @@ class Index extends React.Component {
         </TableHead>
         <TableBody>
           {rows.map(row => (
-            <TableRow key={row.name} role="checkbox">
+            <TableRow key={row} role="checkbox">
                  <tableCell>
-                 <Checkbox value={row.name} onChange={this.GetCheck}></Checkbox>
+                 <Checkbox value={row} name="checkbox" onChange={this.handleChange} defaultChecked={preguntasEnExamen.includes(row)}></Checkbox>
                  </tableCell>
               <TableCell component="th" scope="row">
-                {row.name}
+                {row}
               </TableCell>
             </TableRow>
           ))}
         </TableBody>
       </Table>
-      <Button variant="contained" className={classes.button} color="primary" onClick={this.CrearEx}>
-        Crear
-      </Button>
     </Paper>
-      </MuiThemeProvider>
-    );
+       <input type="submit" value="Modificar!"/>
+    </form>
+         </MuiThemeProvider>
+
+                );
+    
   }
 }
 

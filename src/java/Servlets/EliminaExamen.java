@@ -7,8 +7,6 @@ package Servlets;
 
 import java.io.File;
 import java.io.IOException;
-import java.io.PrintWriter;
-import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -18,24 +16,26 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author nexus
  */
-public class EliminaPreguntas extends HttpServlet {
 
+public class EliminaExamen extends HttpServlet {
+
+  
     String path;
     
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        path = request.getRealPath("/") + "XML/PREGUNTAS/";
+        path = request.getRealPath("/") + "XML/EXAMENES/";
         String nombreDePregunta = (String) request.getParameter("nombre");
         eliminarPregunta(nombreDePregunta);
-         response.sendRedirect("IrPreguntas");
+         response.sendRedirect("IrExamen");
 
     }
     
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        path = request.getRealPath("/") + "XML/PREGUNTAS/";
+        path = request.getRealPath("/") + "XML/EXAMENES/";
         String nombreDePregunta = (String) request.getParameter("nombreOriginal");
         eliminarPregunta(nombreDePregunta);
     }

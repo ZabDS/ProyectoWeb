@@ -62,77 +62,48 @@ const styles = theme => ({
   button: {
     margin: theme.spacing(1),
   },
-  textField: {
-    marginLeft: theme.spacing.unit,
-    marginRight: theme.spacing.unit,
-    width: 200,
-  },
 });
 
-
-function createData(name) {
-  return { name };
-}
-var i;
-var rows = preguntasDisponibles;
-var Name;
-
+const rows = examenesDisponibles;
 
 class Index extends React.Component {
-            
-  handleChange(event) {
-    this.setState({value: event.target.value});
-  }
+    
+   GetCheck(){
+       if(event.target.checked)
+       console.log(event.target.value); 
+	}
         
   render() {
     const { classes } = this.props;
     return (
-      <MuiThemeProvider theme={theme}>  
-                                                     
-        <form className={classes.container} noValidate autoComplete="off" method="POST" action="ModificarExamen">
-        <input type="hidden" name="nombreOriginal" defaultValue={nombreDeExamen}/>
-
-          <TextField
-                id="TestName"
-                name="nombre"
-                defaultValue={nombreDeExamen}
-                className={classes.textField}
-                margin="normal"
-                label="Nombre de Examen"
-                onChange={this.handleChange}
-                />
+      <MuiThemeProvider theme={theme}>
         <Paper className={classes.root}>
       <Table className={classes.table}>
         <TableHead>
           <TableRow>
-            <TableCell padding="checkbox"></TableCell>
-            <TableCell>Pregunta</TableCell>
+            <TableCell>Examen</TableCell>
+                        <TableCell align="right">Opciones</TableCell>
           </TableRow>
         </TableHead>
         <TableBody>
           {rows.map(row => (
-            <TableRow key={row} role="checkbox">
-                 <tableCell>
-                 <Checkbox value={row} name="checkbox" onChange={this.handleChange} defaultChecked={preguntasEnExamen.includes(row)}></Checkbox>
-                 </tableCell>
-              <TableCell component="th" scope="row">
+            <TableRow key={row}>
+              <TableCell>
                 {row}
               </TableCell>
+                            <TableCell align="right">
+                                <a href={"ModificarExamen?nombre=" + row}>Modificar</a>/<a href={"EliminaExamen?nombre=" + row}>Eliminar</a></TableCell>
             </TableRow>
           ))}
         </TableBody>
       </Table>
     </Paper>
-       <input type="submit" value="Modificar!"/>
-    </form>
-         </MuiThemeProvider>
-
-                );
-    
+      </MuiThemeProvider>
+    );
   }
 }
 
 const App = withStyles(styles)(Index);
 
 ReactDOM.render(<App />, 
-document.getElementById('ModificarExamen'));
+document.getElementById('VerExamenes'));

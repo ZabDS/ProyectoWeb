@@ -64,17 +64,11 @@ public class CrearExamen extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         HttpSession session = request.getSession();
-        String USER, PASS, Preguntas, NombreExamen;
-        String[] NPreguntas;
-        int i = 0;
-        USER = (String) session.getAttribute("User");
-        PASS = (String) session.getAttribute("Pass");
+        String USER = (String) session.getAttribute("User");
         String[] preguntas = request.getParameterValues("checkbox");
-        NombreExamen = (String) request.getParameter("Nombre");
+        String NombreExamen = (String) request.getParameter("nombre");
         String path = request.getRealPath("/");
-
         Element raiz = generarRaizXML(NombreExamen, preguntas, USER);
-
         crearArchivoXML(raiz, path, NombreExamen);
         response.sendRedirect("Login");
 
