@@ -1,2 +1,2 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<Examen><autor>ROOT</autor><Pregunta>Algebra</Pregunta></Examen>
+<Examen><autor /><Pregunta>Pregunta Prueba</Pregunta><Pregunta>Algebra</Pregunta><Pregunta>Prueba</Pregunta></Examen>

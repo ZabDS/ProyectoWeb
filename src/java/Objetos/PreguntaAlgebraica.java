@@ -5,17 +5,26 @@
  */
 package Objetos;
 
+import Interfaces.IPregunta;
+
 /**
  *
  * @author nexus
  */
-public class PreguntaAlgebraica extends Pregunta {
+public class PreguntaAlgebraica implements IPregunta {
 
     String nombre;
     String enunciado;
     String autor;
     int puntuacion;
     String solucion;
+    
+    public PreguntaAlgebraica(String nombre, String enunciado, int puntuacion, String solucion) {
+        this.nombre = nombre;
+        this.enunciado = enunciado;
+        this.puntuacion = puntuacion;
+        this.solucion = solucion;
+    }
 
     public PreguntaAlgebraica(String nombre, String enunciado, String autor, int puntuacion, String solucion) {
         this.nombre = nombre;

@@ -64,32 +64,40 @@ const styles = theme => ({
         },
     });
 
-const rows = preguntasEnExamen;
 
 class Index extends React.Component {
+    GetCheck() {
+        if (event.target.checked)
+            console.log(event.target.value);
+    }
 
-GetCheck() {
-if (event.target.checked)
-        console.log(event.target.value);
-}
+    render() {
+        const {classes} = this.props;
+        const numeroDePreguntas = listaDeEnunciados.length;
 
-render() {
-const {classes} = this.props;
         return (
-<MuiThemeProvider theme={theme}>
-    <Paper className={classes.root}>
-    <form>
-        {rows.map(row => (
-    <TextField label="Respuesta:" type="text"/>
-                        ))}
-    <TextField label="Respuesta:" type="text"/>
-            <Button>Siguiente</Button></form>
-    </Paper>
-</MuiThemeProvider>
+                <MuiThemeProvider theme={theme}>
+                    <Paper className={classes.root}>
+                        <form  method="POST" action="ProbarExamen">
+                        <input type="hidden" name="numeroDePreguntas" value={numeroDePreguntas} />
+                            {listaDeEnunciados.map((enunciado, index) => (
+                                                <TextField label={enunciado} name={"entrada_" + index} type="text"/>))}
+                                        
+                            {listaDeSoluciones.map((solucion, index) => (
+                                        <input type="hidden" name={"solucion_" + index} value={solucion}/>
+                                            ))}
+                            {listaDePuntuaciones.map((puntuacion, index) => (
+                                        <input type="hidden" name={"puntuacion_" + index} value={puntuacion}/>
+                                            ))}
+                            <Button type="submit" value="Calificar!">Calificar</Button>
+                
+                        </form>
+                    </Paper>
+                </MuiThemeProvider>
                 );
-}
+    }
 }
 
 const App = withStyles(styles)(Index);
-        ReactDOM.render(<App />,
-                document.getElementById('ProbarExamen'));
+ReactDOM.render(<App />,
+        document.getElementById('ProbarExamen'));

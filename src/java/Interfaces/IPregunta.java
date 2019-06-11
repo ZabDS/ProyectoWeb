@@ -10,5 +10,8 @@ package Interfaces;
  * @author nexus
  */
 public interface IPregunta {
-    
+      public String getEnunciado();
+      public String getSolucion();
+      public int getPuntuacion();
+      
 }

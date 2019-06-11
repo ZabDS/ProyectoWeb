@@ -1,6 +1,5 @@
 package Servlets;
 
-import Objetos.Pregunta;
 import Objetos.PreguntaAlgebraica;
 import Objetos.PreguntaCalculada;
 import java.io.File;

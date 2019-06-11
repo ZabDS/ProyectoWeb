@@ -18,12 +18,15 @@
     <body>
         <div id="ModificarPregunta"></div>
 
-<script type="text/javascript">
-var nombreDePregunta = "<%= (String) request.getAttribute("nombreDePregunta") %>";
-var enunciado = "<%= (String)request.getAttribute("enunciado") %>";
-var puntuacion = "<%= (String)request.getAttribute("puntuacion") %>";
-var formula = "<%= (String)request.getAttribute("solucion") %>";
-</script>
+        <script type="text/javascript">
+            var nombreDePregunta = "<%= (String) request.getAttribute("nombreDePregunta")%>";
+            var enunciado = "<%= (String) request.getAttribute("enunciado")%>";
+            var puntuacion = "<%= (String) request.getAttribute("puntuacion")%>";
+            var formula = "<%= (String) request.getAttribute("solucion")%>";
+            const User = "<%=(String)session.getAttribute("User")%>";
+            const Pass = "<%=(String)session.getAttribute("Pass")%>";
+            session.getAttribute("Pass");
+        </script>
         <script type="text/babel" src="components/ModificarPreguntaCalculada.js"></script>
     </body>
 </html>

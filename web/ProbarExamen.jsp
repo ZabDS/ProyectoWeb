@@ -26,8 +26,12 @@
         <div id="AppBar"></div>
         <div id="ProbarExamen"></div>
         <script type="text/javascript">
-
-            var preguntasEnExamen = <%= request.getAttribute("preguntasEnExamen")%>;</script>
+            var listaDeEnunciados = <%= request.getAttribute("listaDeEnunciados")%>;
+            var listaDeSoluciones = <%= request.getAttribute("listaDeSoluciones")%>;
+            var listaDePuntuaciones = <%= request.getAttribute("listaDePuntuaciones")%>;
+        </script>
+        
+        
         <script type="text/babel" src="components/ProbarExamen.js"></script>
     </body>
 </html>
