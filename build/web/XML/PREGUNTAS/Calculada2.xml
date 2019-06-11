@@ -1,0 +1,2 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<pregunta><autor>ROOT</autor><nombreDePregunta>Calculada2</nombreDePregunta><enunciado>{m}*{n}</enunciado><puntuacion>10</puntuacion><tipoDePregunta>Calculada</tipoDePregunta><variable>m</variable><variable>n</variable><formula>{m}*{n}</formula></pregunta>

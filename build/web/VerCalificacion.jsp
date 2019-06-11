@@ -15,19 +15,17 @@
         <link rel="stylesheet" href="components/App.css" />
     </head>
     <body>
-        <script type="text/babel">const User = <%=(String) session.getAttribute("User")%>;</script>
-        <script type="text/babel">const Pass = <%=(String) session.getAttribute("Pass")%>;</script>
-        <script type="text/babel" src="components/VerPreguntas.js"></script>
-        <script type="text/babel" src="components/HacerExamen.js"></script>
-        <script type= "text/babel" src="components/Login.js"></script>
-        <script type="text/babel" src="components/LoginE.js"></script>
+        <script type="text/babel">const User = "<%=(String) session.getAttribute("User")%>";</script>
+        <script type="text/babel">const Pass = "<%=(String) session.getAttribute("Pass")%>";</script>
+
         <script type="text/babel" src="components/AppBar.js"></script>
 
         <div id="AppBar"></div>
         <div id="VerCalificacion"></div>
         <script type="text/javascript">
-
-            var texto = "<%= (String) request.getAttribute("texto")%>"</script>
+            var retroalimentacion = "<%= (String) request.getAttribute("retroalimentacion")%>";
+            var texto = "<%= (String) request.getAttribute("texto")%>";
+</script>
         <script type="text/babel" src="components/VerCalificacion.js"></script>
     </body>
 </html>

@@ -62,6 +62,13 @@ const styles = theme => ({
         button: {
             margin: theme.spacing(1),
         },
+        textField: {
+            marginLeft: theme.spacing(1),
+            marginUp: theme.spacing(1),
+            marginDown: theme.spacing(1),
+            marginRight: theme.spacing(1),
+        }
+
     });
 
 
@@ -79,10 +86,17 @@ class Index extends React.Component {
                 <MuiThemeProvider theme={theme}>
                     <Paper className={classes.root}>
                         <form  method="POST" action="ProbarExamen">
-                        <input type="hidden" name="numeroDePreguntas" value={numeroDePreguntas} />
+                            <input type="hidden" name="numeroDePreguntas" value={numeroDePreguntas} />
                             {listaDeEnunciados.map((enunciado, index) => (
-                                                <TextField label={enunciado} name={"entrada_" + index} type="text"/>))}
-                                        
+                                                <div align="left"> <TextField
+                                                        margin="dense"
+                                                        variant="outlined" 
+                                                        
+        fullWidth                                                
+        label={enunciado} 
+                                                        name={"entrada_" + index} 
+                                                        type="text"/></div>))}
+                
                             {listaDeSoluciones.map((solucion, index) => (
                                         <input type="hidden" name={"solucion_" + index} value={solucion}/>
                                             ))}

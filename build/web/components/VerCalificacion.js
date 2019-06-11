@@ -101,6 +101,8 @@ class Index extends React.Component {
 {texto}
 </Typography>
           <Typography component="p">
+          {retroalimentacion}
+
           </Typography>
         </CardContent>
            </CardActionArea>

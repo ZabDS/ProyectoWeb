@@ -12,16 +12,11 @@
         <script src="https://unpkg.com/babel-standalone@latest/babel.min.js" crossorigin="anonymous"></script>
         <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500" />
         <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons" />
-
-        <link href="css/addons-pro/steppers.min.css" rel="stylesheet">
-
         <link rel="stylesheet" href="components/App.css" />
     </head>
     <body>
-        <script type="text/babel">const User = <%=(String) session.getAttribute("User")%>;</script>
-        <script type="text/babel">const Pass = <%=(String) session.getAttribute("Pass")%>;</script>
-        <script type= "text/babel" src="components/Login.js"></script>
-        <script type="text/babel" src="components/LoginE.js"></script>
+        <script type="text/babel">const User = "<%=(String) session.getAttribute("User")%>";</script>
+        <script type="text/babel">const Pass = "<%=(String) session.getAttribute("Pass")%>";</script>
         <script type="text/babel" src="components/AppBar.js"></script>
         <div id="AppBar"></div>
         <div id="ProbarExamen"></div>
@@ -30,8 +25,6 @@
             var listaDeSoluciones = <%= request.getAttribute("listaDeSoluciones")%>;
             var listaDePuntuaciones = <%= request.getAttribute("listaDePuntuaciones")%>;
         </script>
-        
-        
         <script type="text/babel" src="components/ProbarExamen.js"></script>
     </body>
 </html>

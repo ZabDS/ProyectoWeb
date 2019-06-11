@@ -15,12 +15,8 @@
         <link rel="stylesheet" href="components/App.css" />
     </head>
     <body>
-        <script type="text/babel">const User = <%=(String) session.getAttribute("User")%>;</script>
-        <script type="text/babel">const Pass = <%=(String) session.getAttribute("Pass")%>;</script>
-        <script type="text/babel" src="components/VerPreguntas.js"></script>
-        <script type="text/babel" src="components/HacerExamen.js"></script>
-        <script type= "text/babel" src="components/Login.js"></script>
-        <script type="text/babel" src="components/LoginE.js"></script>
+        <script type="text/babel">const User = "<%=(String) session.getAttribute("User")%>";</script>
+        <script type="text/babel">const Pass = "<%=(String) session.getAttribute("Pass")%>";</script>
         <script type="text/babel" src="components/AppBar.js"></script>
 
         <div id="AppBar"></div>

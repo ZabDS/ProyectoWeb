@@ -38,24 +38,30 @@ public class ProbarExamen extends HttpServlet {
             throws ServletException, IOException {
         inicializar(request, response);
         evaluarExamen();
- RequestDispatcher rs = request.getRequestDispatcher("VerCalificacion.jsp");
-            rs.forward(request, response);
+        RequestDispatcher rs = request.getRequestDispatcher("VerCalificacion.jsp");
+        rs.forward(request, response);
     }
 
     protected void evaluarExamen() {
         int numeroDePreguntas = Integer.valueOf(request.getParameter("numeroDePreguntas"));
         int maxPuntuacion = 0;
         int puntosObtenidos = 0;
+        int correctas = 0;
+        String retroalimentacion = "";
         for (int i = 0; i < numeroDePreguntas; i++) {
             String solucion = request.getParameter("solucion_" + i);
             String entrada = request.getParameter("entrada_" + i);
+            
             int puntos = Integer.valueOf(request.getParameter("puntuacion_" + i));
             maxPuntuacion += puntos;
             if (entrada.toLowerCase().equals(solucion)) {
                 puntosObtenidos += puntos;
+                correctas += 1;
             }
         }
-        request.setAttribute("texto", " " + puntosObtenidos + " de " + maxPuntuacion + " ");
+        request.setAttribute("retroalimentacion",correctas + " de " + numeroDePreguntas);
+
+        request.setAttribute("texto", puntosObtenidos + " de " + maxPuntuacion);
     }
 
     protected void cargarPreguntas() {
@@ -117,7 +123,10 @@ public class ProbarExamen extends HttpServlet {
     }
 
     protected String atributoAString(Document doc, String atributo) {
+        try{
         return doc.getElementsByTagName(atributo).item(0).getTextContent();
+        }catch(Exception e){}
+        return "";
     }
 
     protected ArrayList<String> obtenerVariablesDePreguntaXML(Document doc) {

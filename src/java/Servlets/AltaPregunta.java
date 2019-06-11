@@ -48,7 +48,9 @@ public class AltaPregunta extends HttpServlet {
         HttpSession session = request.getSession();
         inicializar(request, response, session);
         crearPregunta();
-        response.sendRedirect("IrPreguntas");
+
+        RequestDispatcher rs = request.getRequestDispatcher("Login");
+        rs.forward(request, response);
     }
 
     protected void crearPregunta() {
